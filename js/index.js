@@ -16,3 +16,12 @@ function push(){
     // lastitem.style.animation = "0s"//animation: slide-up 5s ease;"
 
 }
+function isEmpty(){
+    if(index == 0){
+        alert("Stack is empty!");
+        return true;
+    }else{
+        alert("stack is NOT empty");
+        return false;
+    }
+}
