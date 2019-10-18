@@ -1,7 +1,7 @@
 body,html{
     height: 100%;
     margin: 0px;
-
+    background-color:#86dbca ;
 }
 *{
     box-sizing: border-box;
@@ -28,10 +28,30 @@ body,html{
             border:  10px solid #3f9bd2;
             border-radius: 2px;;
             border-top: none;
-            height: 50%;
-            width: 150px;
+            box-shadow: -1px 0px 8px 7px #386ba08f;
+            height: 60%;
+            width: 200px;
             padding: 50px ;
             margin: 50px;
+        }
+    }
+    .stack-functions{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        .functions{
+            display: flex;
+            flex-direction: column;
+            button{
+            display: block;
+            font-size: 40px;;
+            padding: 10px;;
+            margin: 10px;
+            background-color:#3f9bd2 ;
+            color:white;
+            border-radius:20px ;
+            }
         }
     }
 }
