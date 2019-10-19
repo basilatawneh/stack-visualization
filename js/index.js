@@ -59,6 +59,11 @@ function getPeak(){
     let topStack = stack[stack.length-1];
     alert(topStack.innerHTML);
 }
+
+function getSize(){
+    alert("the siaze is : "+index);
+}
+
 // search the CSSOM for a specific -webkit-keyframe rule
 function findKeyframesRule(rule)
     {
