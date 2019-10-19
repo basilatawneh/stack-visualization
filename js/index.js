@@ -1,11 +1,40 @@
 let stackSize = 12;
 let index = 0;
+
+function ButtonsDisable(status){
+    let pushbtn = document.getElementById("push");
+    let popbtn = document.getElementById("pop");
+    let peakbtn = document.getElementById("peak");
+    let sizebtn = document.getElementById("size")
+    let isemptybtn = document.getElementById("isempty");
+    let swapbtn = document.getElementById("swap");
+
+    let color = "#3f9bd2"
+    if(status == true){
+         color = "#6a7277"
+    }
+    pushbtn.style.backgroundColor  = color;
+    popbtn.style.backgroundColor  = color;
+    peakbtn.style.backgroundColor  = color;
+    sizebtn.style.backgroundColor  = color;
+    isemptybtn.style.backgroundColor  = color;
+    swapbtn.style.backgroundColor  = color;
+
+    pushbtn.disabled = status;
+    popbtn.disabled = status;
+    peakbtn.disabled = status;
+    sizebtn.disabled = status;
+    isemptybtn.disabled = status;
+    swapbtn.disabled = status;
+}
 function push(){
-   
+    ButtonsDisable(true);
+    popupDisplay("Wait",1000);
     if(index == stackSize){
-        popupDisplay("Stack is full, pop item to push one :)");
+        popupDisplay("Stack is full, pop item to push one :)",1000);
         return ;
     }
+
     let stack = document.getElementsByClassName("body")[0];
     let item = creatItem("div","item" + ++index,"move-items")
     stack.appendChild(item);  
@@ -14,28 +43,35 @@ function push(){
 
     setTimeout(() => {
         item.className = item.className.replace("move-items","items");
-    }, 2000);
+        ButtonsDisable(false);
+        popupDisplay("Done",1000);
+    }, 1000);
     
 }
     // let lastitem = document.getElementsByClassName("items")[index-1];
     // lastitem.style.animation = "0s"//animation: slide-up 5s ease;"
 function isEmpty(){
-
+    ButtonsDisable(true);
     if(index == 0){
-        popupDisplay("Stack is empty!");
+        popupDisplay("Stack is empty!",2000);
         return true;
     }else{
-        popupDisplay("stack is NOT empty");
+        popupDisplay("stack is NOT empty",2000);
         return false;
     }
-    delay(1000);
+    setTimeout(() => {
+
+        popupDisplay("Done",1000);
+    }, 1000);
+   
 }
 function pop(){
- 
     if(index == 0){
-        popupDisplay("Stack is empty, push item to pop one :)");
+        popupDisplay("Stack is empty, push item to pop one :)",1000);
         return ;
     }
+    ButtonsDisable(true)
+    popupDisplay("Wait",1000);
     index--;  
     let stack = document.getElementsByClassName("items");
     let topStack = stack[stack.length-1];
@@ -43,11 +79,10 @@ function pop(){
     topStack.style.animation = "slide-down 1s linear alternate-reverse forwards";
    
     setTimeout(() => {
-        // topStack.style.display="none";
-        
-       
         let bb= document.getElementsByClassName("body")[0];
         bb.removeChild(topStack);
+        ButtonsDisable(false);
+        popupDisplay("Done",1000);
     }, 1000);
     change("slide-down",index,"right");
     
@@ -55,18 +90,25 @@ function pop(){
 }
 
 function getPeak(){
-    
+    ButtonsDisable(true);
     if(index ==0){
-        popupDisplay("Stack is empty");
+        popupDisplay("Stack is empty",2000);
         return;
     }
     let stack = document.getElementsByClassName("items");
     let topStack = stack[stack.length-1];
     popupDisplay(topStack.innerHTML);
+    setTimeout(() => {  
+        ButtonsDisable(false);
+    }, 1000);
 }
 
 function getSize(){
-    popupDisplay("the size is : "+index);
+    ButtonsDisable(true);
+    popupDisplay("the size is : "+index, 2000);
+    setTimeout(() => {  
+        ButtonsDisable(false);
+    }, 2000);
 }
 function creatItem(type,text,className){
     var node = document.createElement(type);                 // Create a <li> node
@@ -80,9 +122,11 @@ function creatItem(type,text,className){
 }
 function swap(){
     if(index <2){
-        popupDisplay("the elements are less than 2");
+        popupDisplay("the elements are less than 2",1000);
         return ;
     }
+    ButtonsDisable(true);
+    popupDisplay("Wait",1000);
     let stack = document.getElementsByClassName("items");
     let firstElement = stack[stack.length-1];
     let secondElement = stack[stack.length-2];
@@ -101,27 +145,25 @@ function swap(){
         stackBody.appendChild( creatItem("div",secondElement.innerHTML,"items"));
         popupAnimationChange("swap-first",index,"left");
         popupAnimationChange("swap-second",index-1,"right");
+        popupDisplay("Done",1000);
+        popupDisplay(false);
+        
     }, 3050);
    
 
 }
-function popupDisplay(text){
+function popupDisplay(text , delay){
+    ButtonsDisable(true)
     let popup = document.getElementsByClassName("popup")[0];
     popup.innerHTML = text;
     popup.style.display = "block";
     //popup.style.animation = ""
     setTimeout(() => {
         popup.style.display = "none";
-    }, 3000);
+        ButtonsDisable(false);
+
+    }, delay);
 //    delay(3000);
-}
-function delay(time){
-    let start = new Date();
-    while(true){
-        let end = new Date();
-        if((end-start)>=time)
-             break;
-    }
 }
 // search the CSSOM for a specific -webkit-keyframe rule
 function findKeyframesRule(rule)
