@@ -13,7 +13,7 @@ body,html{
     text-align: center;
     padding: 10px;
     width: 100%;
-    font-size: 32px;
+    font-size: 65px;
 }
 
 .container{
@@ -41,13 +41,14 @@ body,html{
                //bottom:40px;
                 background-color: #43b5b5;
                 color: white;
-                font-size: 20px;
+                font-size: 32px;
                 align-content: center;
                 height: 48px;
                 width: 280px;
                 border: 1px solid white;
                 line-height: 50px;
                 text-align: center;
+
                 //animation: slide-up 5s ease;
             }
             .move-items{
@@ -55,11 +56,7 @@ body,html{
                 animation: slide 1s linear;
                 // animation-direction: reverse; 
             }
-            .pop-items{
-                @extend .items;
-                animation: slide-down 1s linear alternate-reverse;
-
-            }
+          
             }
         }
     
@@ -76,25 +73,38 @@ body,html{
             font-size: 40px;;
             padding: 10px;;
             margin: 10px;
+            width:100%;
             background-color:#3f9bd2 ;
             color:white;
-            border-radius:20px ;
+            border-radius:32px ;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
             }
+            button:hover{
+                // width: 120%;
+                // font-size: 32px;
+                color: #74f949;
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+                cursor:pointer;
+                // opacity: 0.6;
+            }
+         
         }
     }
 }
 .popup {
-    height: 100px;
+    height: 120px;
     width: 250px;
     position: absolute;
     background-color: white;
     bottom: 40%;
     left: 42%;
     box-shadow: -2px -2px 6px 5px #6d81af;
-    font-size: 25px;
+    font-size: 32px;
     text-align: center;
     border-radius: 20px;
     display: none;
+    vertical-align: middle;
+    // line-height: 90px;  
     animation: popup-animation 0.1s linear;// duration timing-function delay iteration-count direction fill-mode;
 }
 @keyframes slide {
@@ -111,14 +121,7 @@ body,html{
     //70% {background-color:red; right:0px; bottom:0px;}
    100% {right:0px; bottom:0px; display:none}    
 }
-.test{
-    @extend .items;
-    animation: swap-first 5s linear ;
-}
-.test2{
-    @extend .items;
-    animation: swap-second 5s linear ;
-}
+
 @keyframes popup-animation{
     from{bottom:0}
     to{buttom:30%;}
@@ -127,15 +130,15 @@ body,html{
 @keyframes swap-first{
    
     0%   {background-color:#6cd0e6;  bottom:0px;}
-    50%  {background-color:#563dde; left:0px; bottom:550px;}
+    50%  {background-color:#9c69de; left:0px; bottom:550px;}
     60%  {background-color:#6cd0e6; left:200px;bottom:550px;}
-    80%  {background-color:#563dde; left:0px; bottom:550px;}
+    80%  {background-color:#9c69de; left:0px; bottom:550px;}
     100% {background-color:#6cd0e6; left:0px; bottom:0px;}  
 }
 @keyframes swap-second{
     0%   {background-color:#6cd0e6;  bottom:0px;}
-    50%  {background-color:#563dde; right:0px; bottom:600px;}
+    50%  {background-color:#9c69de; right:0px; bottom:600px;}
     60%  {background-color:#6cd0e6; right:200px;bottom:600px;}
-    80%  {background-color:#563dde; right:0px; bottom:600px;}
+    80%  {background-color:#9c69de; right:0px; bottom:600px;}
     100% {background-color:#6cd0e6; right:0px; bottom:-50px;}
 }

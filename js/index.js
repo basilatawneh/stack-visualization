@@ -2,6 +2,7 @@ let stackSize = 12;
 let index = 0;
 
 function ButtonsDisable(status){
+    let newStackbtn =document.getElementById("NewStack");
     let pushbtn = document.getElementById("push");
     let popbtn = document.getElementById("pop");
     let peakbtn = document.getElementById("peak");
@@ -13,6 +14,8 @@ function ButtonsDisable(status){
     if(status == true){
          color = "#6a7277"
     }
+
+    newStackbtn.style.backgroundColor = color;
     pushbtn.style.backgroundColor  = color;
     popbtn.style.backgroundColor  = color;
     peakbtn.style.backgroundColor  = color;
@@ -20,6 +23,7 @@ function ButtonsDisable(status){
     isemptybtn.style.backgroundColor  = color;
     swapbtn.style.backgroundColor  = color;
 
+    newStackbtn.disabled =status;
     pushbtn.disabled = status;
     popbtn.disabled = status;
     peakbtn.disabled = status;
@@ -36,7 +40,7 @@ function push(){
     }
 
     let stack = document.getElementsByClassName("body")[0];
-    let item = creatItem("div","item" + ++index,"move-items")
+    let item = creatItem("div","Item " + ++index,"move-items")
     stack.appendChild(item);  
    
     change("slide",index,"left")    
@@ -152,6 +156,25 @@ function swap(){
    
 
 }
+
+function newStack(){
+    index = 0;
+    ButtonsDisable(true);
+    popupDisplay("Wait",1000);
+    let stack = document.getElementsByClassName("items");
+    for (let item of stack)
+        item.style.animation = "slide-down 1s linear alternate-reverse"
+    setTimeout(() => {
+        let bb= document.getElementsByClassName("body")[0];
+        bb.innerHTML = "";
+       
+       ButtonsDisable(false);
+       popupDisplay("Done",1000);
+    }, 1000);
+ 
+    
+
+}
 function popupDisplay(text , delay){
     ButtonsDisable(true)
     let popup = document.getElementsByClassName("popup")[0];
@@ -223,9 +246,9 @@ function popupAnimationChange(animationName1,index,dir){
        keyframes.deleteRule("100%");
 
        keyframes.appendRule(" 0%   {background-color:#6cd0e6;  bottom:0px;}");
-       keyframes.appendRule ("50%  {background-color:#563dde; "+dir+":0px; bottom:"+(600-50*index)+"px;}")
+       keyframes.appendRule ("50%  {background-color:#9c69de; "+dir+":0px; bottom:"+(600-50*index)+"px;}")
        keyframes.appendRule ("60%  {background-color:#6cd0e6; "+dir+":200px;bottom:"+(600-50*index)+"px;}");
-       keyframes.appendRule ("80%  {background-color:#563dde; "+dir+":0px; bottom:"+(600-50*index)+"px;}")
+       keyframes.appendRule ("80%  {background-color:#9c69de; "+dir+":0px; bottom:"+(600-50*index)+"px;}")
        keyframes.appendRule ("100% {background-color:#6cd0e6; "+dir+":0px; bottom:0px;}")
      }
        

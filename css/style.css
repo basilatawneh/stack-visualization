@@ -13,7 +13,7 @@ body, html {
   text-align: center;
   padding: 10px;
   width: 100%;
-  font-size: 32px; }
+  font-size: 65px; }
 
 .container {
   display: flex;
@@ -35,11 +35,11 @@ body, html {
       margin: 50px;
       display: flex;
       flex-direction: column-reverse; }
-      .container .stack-body .body .items, .container .stack-body .body .move-items, .container .stack-body .body .pop-items, .container .stack-body .body .test, .container .stack-body .body .test2 {
+      .container .stack-body .body .items, .container .stack-body .body .move-items {
         position: relative;
         background-color: #43b5b5;
         color: white;
-        font-size: 20px;
+        font-size: 32px;
         align-content: center;
         height: 48px;
         width: 280px;
@@ -48,8 +48,6 @@ body, html {
         text-align: center; }
       .container .stack-body .body .move-items {
         animation: slide 1s linear; }
-      .container .stack-body .body .pop-items {
-        animation: slide-down 1s linear alternate-reverse; }
   .container .stack-functions {
     display: flex;
     justify-content: center;
@@ -63,22 +61,29 @@ body, html {
         font-size: 40px;
         padding: 10px;
         margin: 10px;
+        width: 100%;
         background-color: #3f9bd2;
         color: white;
-        border-radius: 20px; }
+        border-radius: 32px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+      .container .stack-functions .functions button:hover {
+        color: #74f949;
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        cursor: pointer; }
 
 .popup {
-  height: 100px;
+  height: 120px;
   width: 250px;
   position: absolute;
   background-color: white;
   bottom: 40%;
   left: 42%;
   box-shadow: -2px -2px 6px 5px #6d81af;
-  font-size: 25px;
+  font-size: 32px;
   text-align: center;
   border-radius: 20px;
   display: none;
+  vertical-align: middle;
   animation: popup-animation 0.1s linear; }
 
 @keyframes slide {
@@ -109,12 +114,6 @@ body, html {
     right: 0px;
     bottom: 0px;
     display: none; } }
-.test {
-  animation: swap-first 5s linear; }
-
-.test2 {
-  animation: swap-second 5s linear; }
-
 @keyframes popup-animation {
   from {
     bottom: 0; }
@@ -125,7 +124,7 @@ body, html {
     background-color: #6cd0e6;
     bottom: 0px; }
   50% {
-    background-color: #563dde;
+    background-color: #9c69de;
     left: 0px;
     bottom: 550px; }
   60% {
@@ -133,7 +132,7 @@ body, html {
     left: 200px;
     bottom: 550px; }
   80% {
-    background-color: #563dde;
+    background-color: #9c69de;
     left: 0px;
     bottom: 550px; }
   100% {
@@ -145,7 +144,7 @@ body, html {
     background-color: #6cd0e6;
     bottom: 0px; }
   50% {
-    background-color: #563dde;
+    background-color: #9c69de;
     right: 0px;
     bottom: 600px; }
   60% {
@@ -153,7 +152,7 @@ body, html {
     right: 200px;
     bottom: 600px; }
   80% {
-    background-color: #563dde;
+    background-color: #9c69de;
     right: 0px;
     bottom: 600px; }
   100% {
