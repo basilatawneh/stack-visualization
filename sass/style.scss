@@ -55,7 +55,11 @@ body,html{
                 animation: slide 1s linear;
                 // animation-direction: reverse; 
             }
-           
+            .pop-items{
+                @extend .items;
+                animation: slide-down 1s linear alternate-reverse;
+
+            }
             }
         }
     
@@ -80,34 +84,17 @@ body,html{
     }
 }
 @keyframes slide {
-    0%   {background-color:red; left:-200px; bottom:600px;}
+    0%   {opacity: 0;background-color:red; left:-350px; bottom:600px;}
     30%  {background-color:blue; left:0px; bottom:600px;}
     // 50%  {background-color:blue; left:0px; bottom:300px;}
     100% {background-color:red; left:0px; bottom:0px;}    
 }
 @keyframes slide-down {
-    0% {
-        opacity: 0;
-        transform: translateY(0px);
-    }
-    20% {
-        opacity: 1;
-        transform: translateY(-100px);
-    }
-    40% {
-        //opacity: 0.5;
-        transform: translateY(-200px);
-    }
-    60% {
-        //opacity: 0.5;
-        transform: translateY(-300px);
-    }
-    80% {
-        //opacity: 0.5;
-        transform: translateY(-500px);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-500);
-    }
+   
+    0%   {opacity: 0;background-color:red; right:-350px; bottom:600px;}
+    30%  {background-color:blue; right:0px; bottom:600px;}
+    // 50%  {background-color:blue; left:0px; bottom:300px;}
+    //70% {background-color:red; right:0px; bottom:0px;}
+   100% {right:0px; bottom:0px; display:none}    
+
 }

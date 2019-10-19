@@ -6,11 +6,7 @@ function push(){
         return ;
     }
     let stack = document.getElementsByClassName("body")[0];
-    // let append = "<div class = 'move-items" + (++index)+"' >";
-    //     append += "item" + index + "</div>";
-    // let cuurentData = stack.innerHTML;
-    // cuurentData = cuurentData.replace("move-items"+(index-1),"items");
-    // stack.innerHTML =  cuurentData +append;
+   
     var node = document.createElement("div");                 // Create a <li> node
     var textnode = document.createTextNode("item" + ++index);  
         // Create a text node
@@ -18,12 +14,12 @@ function push(){
     node.classList.add("move-items");
     // node.style.bottom = ((index - 1) * 10 + 10) + "px";
     stack.appendChild(node);
-    change("slide",index)    
+    change("slide",index,"left")    
 
     setTimeout(() => {
 
         node.className = node.className.replace("slide"," ");
-    }, 2100);
+    }, 2000);
 }
     // let lastitem = document.getElementsByClassName("items")[index-1];
     // lastitem.style.animation = "0s"//animation: slide-up 5s ease;"
@@ -36,14 +32,28 @@ function isEmpty(){
         return false;
     }
 }
-
-
-
-
-
-
-
-
+function pop(){
+    if(index == 0){
+        alert("Stack is empty, push item to pop one :)");
+        return ;
+    }
+   
+    let stack = document.getElementsByClassName("move-items");
+    let topStack = stack[stack.length-1];
+   
+    topStack.style.animation = "slide-down 1s linear alternate-reverse"
+    
+    setTimeout(() => {
+        topStack.style.display="none";
+        //change("slide-down",-1*index)  
+        index--;  
+        // change("slide-down",index,"right");
+        let bb= document.getElementsByClassName("body")[0];
+        bb.removeChild(topStack);
+    }, 1500);
+    
+   
+}
 
 
 // search the CSSOM for a specific -webkit-keyframe rule
@@ -69,7 +79,7 @@ function findKeyframesRule(rule)
     }
 
 // remove old keyframes and add new ones
-function change(anim,index)
+function change(anim,index,dir)
     {
         // find our -webkit-keyframe rule
         var keyframes = findKeyframesRule(anim);
@@ -81,9 +91,9 @@ function change(anim,index)
         keyframes.deleteRule("100%");
         
         // create new 0% and 100% rules with random numbers
-        keyframes.appendRule(" 0% {opacity: 0; left: -200px; bottom: " + (600-index*50) + "px; }");
-        keyframes.appendRule ("30% { opacity: 1; blue; left: 0px; bottom: " + (600-index*50) + "px; }")
-        keyframes.appendRule ("100% {left: 0px; bottom: 0px; }");
+        keyframes.appendRule(" 0% {opacity: 0; "+dir+": -200px; bottom: " + (600-index*50) + "px; }");
+        keyframes.appendRule ("30% { opacity: 1; blue; "+dir+": 0px; bottom: " + (600-index*50) + "px; }")
+        keyframes.appendRule ("100% {"+dir+": 0px; bottom: 0px; }");
          console.log(keyframes);
         // assign the animation to our element (which will cause the animation to run)
         		/*document.getElementById('box').style.WebkitAnimationName = anim;
@@ -91,16 +101,3 @@ function change(anim,index)
       }
         
     }
-
-// begin the new animation process
-// function startChange()
-//     {
-//         // remove the old animation from our object
-// //         document.getElementById('box').style.webkitAnimationName = "none";
-        
-//         // call the change method, which will update the keyframe animation
-//         setTimeout(function(){change("rotate");}, 0);
-//     }
-
-// // get a random number integer between two low/high extremes
-
