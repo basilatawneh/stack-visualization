@@ -45,9 +45,8 @@ function pop(){
     
     setTimeout(() => {
         topStack.style.display="none";
-        //change("slide-down",-1*index)  
         index--;  
-        // change("slide-down",index,"right");
+        change("slide-down",index,"right");
         let bb= document.getElementsByClassName("body")[0];
         bb.removeChild(topStack);
     }, 1500);
@@ -55,7 +54,11 @@ function pop(){
    
 }
 
-
+function getPeak(){
+    let stack = document.getElementsByClassName("move-items");
+    let topStack = stack[stack.length-1];
+    alert(topStack.innerHTML);
+}
 // search the CSSOM for a specific -webkit-keyframe rule
 function findKeyframesRule(rule)
     {
