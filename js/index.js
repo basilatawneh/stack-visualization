@@ -1,8 +1,9 @@
 let stackSize = 12;
 let index = 0;
 function push(){
+   
     if(index == stackSize){
-        alert("Stack is full, pop item to push one :)");
+        popupDisplay("Stack is full, pop item to push one :)");
         return ;
     }
     let stack = document.getElementsByClassName("body")[0];
@@ -17,53 +18,77 @@ function push(){
     change("slide",index,"left")    
 
     setTimeout(() => {
-
-        node.className = node.className.replace("slide"," ");
+        //node.className = node.className.replace("slide"," ");
     }, 2000);
+    node.className = node.className.replace("slide"," ");
 }
     // let lastitem = document.getElementsByClassName("items")[index-1];
     // lastitem.style.animation = "0s"//animation: slide-up 5s ease;"
 function isEmpty(){
+
     if(index == 0){
-        alert("Stack is empty!");
+        popupDisplay("Stack is empty!");
         return true;
     }else{
-        alert("stack is NOT empty");
+        popupDisplay("stack is NOT empty");
         return false;
     }
+    delay(1000);
 }
 function pop(){
+ 
     if(index == 0){
-        alert("Stack is empty, push item to pop one :)");
+        popupDisplay("Stack is empty, push item to pop one :)");
         return ;
     }
-   
+    index--;  
     let stack = document.getElementsByClassName("move-items");
     let topStack = stack[stack.length-1];
    
-    topStack.style.animation = "slide-down 1s linear alternate-reverse"
-    
+    topStack.style.animation = "slide-down 1s linear alternate-reverse forwards";
+    change("slide-down",index,"right");
     setTimeout(() => {
         topStack.style.display="none";
-        index--;  
-        change("slide-down",index,"right");
+        
+        
         let bb= document.getElementsByClassName("body")[0];
         bb.removeChild(topStack);
-    }, 1500);
+    }, 1000);
     
    
 }
 
 function getPeak(){
-    let stack = document.getElementsByClassName("move-items");
+    
+    if(isEmpty()){
+       return;
+    
+    }let stack = document.getElementsByClassName("move-items");
     let topStack = stack[stack.length-1];
-    alert(topStack.innerHTML);
+    popupDisplay(topStack.innerHTML);
 }
 
 function getSize(){
-    alert("the siaze is : "+index);
+    popupDisplay("the size is : "+index);
 }
-
+function popupDisplay(text){
+    let popup = document.getElementsByClassName("popup")[0];
+    popup.innerHTML = text;
+    popup.style.display = "block";
+    //popup.style.animation = ""
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 3000);
+//    delay(3000);
+}
+function delay(time){
+    let start = new Date();
+    while(true){
+        let end = new Date();
+        if((end-start)>=time)
+             break;
+    }
+}
 // search the CSSOM for a specific -webkit-keyframe rule
 function findKeyframesRule(rule)
     {
