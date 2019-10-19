@@ -7,20 +7,15 @@ function push(){
         return ;
     }
     let stack = document.getElementsByClassName("body")[0];
+    let item = creatItem("div","item" + ++index,"move-items")
+    stack.appendChild(item);  
    
-    var node = document.createElement("div");                 // Create a <li> node
-    var textnode = document.createTextNode("item" + ++index);  
-        // Create a text node
-    node.appendChild(textnode);  
-    node.classList.add("move-items");
-    // node.style.bottom = ((index - 1) * 10 + 10) + "px";
-    stack.appendChild(node);
     change("slide",index,"left")    
 
     setTimeout(() => {
-        //node.className = node.className.replace("slide"," ");
+        item.className = item.className.replace("move-items","items");
     }, 2000);
-    node.className = node.className.replace("slide"," ");
+    
 }
     // let lastitem = document.getElementsByClassName("items")[index-1];
     // lastitem.style.animation = "0s"//animation: slide-up 5s ease;"
@@ -42,34 +37,73 @@ function pop(){
         return ;
     }
     index--;  
-    let stack = document.getElementsByClassName("move-items");
+    let stack = document.getElementsByClassName("items");
     let topStack = stack[stack.length-1];
    
     topStack.style.animation = "slide-down 1s linear alternate-reverse forwards";
-    change("slide-down",index,"right");
+   
     setTimeout(() => {
-        topStack.style.display="none";
+        // topStack.style.display="none";
         
-        
+       
         let bb= document.getElementsByClassName("body")[0];
         bb.removeChild(topStack);
     }, 1000);
+    change("slide-down",index,"right");
     
    
 }
 
 function getPeak(){
     
-    if(isEmpty()){
-       return;
-    
-    }let stack = document.getElementsByClassName("move-items");
+    if(index ==0){
+        popupDisplay("Stack is empty");
+        return;
+    }
+    let stack = document.getElementsByClassName("items");
     let topStack = stack[stack.length-1];
     popupDisplay(topStack.innerHTML);
 }
 
 function getSize(){
     popupDisplay("the size is : "+index);
+}
+function creatItem(type,text,className){
+    var node = document.createElement(type);                 // Create a <li> node
+    var textnode = document.createTextNode(text);  
+        // Create a text node
+    node.appendChild(textnode);  
+    node.classList.add(className);
+    // node.style.bottom = ((index - 1) * 10 + 10) + "px";
+    return node;
+
+}
+function swap(){
+    if(index <2){
+        popupDisplay("the elements are less than 2");
+        return ;
+    }
+    let stack = document.getElementsByClassName("items");
+    let firstElement = stack[stack.length-1];
+    let secondElement = stack[stack.length-2];
+    firstElement.style.animation = "swap-first 3s linear forwards  ";
+    secondElement.style.animation = "swap-second 3s linear forwards 0.1s";
+ 
+    setTimeout(() => {
+        // topStack.style.display="none";
+        // firstElement.style.display
+        // firstElement.style.animation = "";
+        // secondElement.style.animation = "";
+        let stackBody= document.getElementsByClassName("body")[0];
+        stackBody.removeChild(firstElement);
+        stackBody.removeChild(secondElement);
+        stackBody.appendChild( creatItem("div",firstElement.innerHTML,"items"));
+        stackBody.appendChild( creatItem("div",secondElement.innerHTML,"items"));
+        popupAnimationChange("swap-first",index,"left");
+        popupAnimationChange("swap-second",index-1,"right");
+    }, 3050);
+   
+
 }
 function popupDisplay(text){
     let popup = document.getElementsByClassName("popup")[0];
@@ -134,3 +168,23 @@ function change(anim,index,dir)
       }
         
     }
+function popupAnimationChange(animationName1,index,dir){
+     // find our -webkit-keyframe rule
+     let keyframes = findKeyframesRule(animationName1);
+    
+     if (keyframes !== null ) {
+      
+       keyframes.deleteRule("0%");
+       keyframes.deleteRule("50%");
+       keyframes.deleteRule("60%");   
+       keyframes.deleteRule("80%");
+       keyframes.deleteRule("100%");
+
+       keyframes.appendRule(" 0%   {background-color:#6cd0e6;  bottom:0px;}");
+       keyframes.appendRule ("50%  {background-color:#563dde; "+dir+":0px; bottom:"+(600-50*index)+"px;}")
+       keyframes.appendRule ("60%  {background-color:#6cd0e6; "+dir+":200px;bottom:"+(600-50*index)+"px;}");
+       keyframes.appendRule ("80%  {background-color:#563dde; "+dir+":0px; bottom:"+(600-50*index)+"px;}")
+       keyframes.appendRule ("100% {background-color:#6cd0e6; "+dir+":0px; bottom:0px;}")
+     }
+       
+}

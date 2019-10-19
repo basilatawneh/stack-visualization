@@ -111,8 +111,31 @@ body,html{
     //70% {background-color:red; right:0px; bottom:0px;}
    100% {right:0px; bottom:0px; display:none}    
 }
-
+.test{
+    @extend .items;
+    animation: swap-first 5s linear ;
+}
+.test2{
+    @extend .items;
+    animation: swap-second 5s linear ;
+}
 @keyframes popup-animation{
     from{bottom:0}
     to{buttom:30%;}
+}
+
+@keyframes swap-first{
+   
+    0%   {background-color:#6cd0e6;  bottom:0px;}
+    50%  {background-color:#563dde; left:0px; bottom:550px;}
+    60%  {background-color:#6cd0e6; left:200px;bottom:550px;}
+    80%  {background-color:#563dde; left:0px; bottom:550px;}
+    100% {background-color:#6cd0e6; left:0px; bottom:0px;}  
+}
+@keyframes swap-second{
+    0%   {background-color:#6cd0e6;  bottom:0px;}
+    50%  {background-color:#563dde; right:0px; bottom:600px;}
+    60%  {background-color:#6cd0e6; right:200px;bottom:600px;}
+    80%  {background-color:#563dde; right:0px; bottom:600px;}
+    100% {background-color:#6cd0e6; right:0px; bottom:-50px;}
 }

@@ -35,7 +35,7 @@ body, html {
       margin: 50px;
       display: flex;
       flex-direction: column-reverse; }
-      .container .stack-body .body .items, .container .stack-body .body .move-items, .container .stack-body .body .pop-items {
+      .container .stack-body .body .items, .container .stack-body .body .move-items, .container .stack-body .body .pop-items, .container .stack-body .body .test, .container .stack-body .body .test2 {
         position: relative;
         background-color: #43b5b5;
         color: white;
@@ -109,10 +109,56 @@ body, html {
     right: 0px;
     bottom: 0px;
     display: none; } }
+.test {
+  animation: swap-first 5s linear; }
+
+.test2 {
+  animation: swap-second 5s linear; }
+
 @keyframes popup-animation {
   from {
     bottom: 0; }
   to {
     buttom: 30%; } }
+@keyframes swap-first {
+  0% {
+    background-color: #6cd0e6;
+    bottom: 0px; }
+  50% {
+    background-color: #563dde;
+    left: 0px;
+    bottom: 550px; }
+  60% {
+    background-color: #6cd0e6;
+    left: 200px;
+    bottom: 550px; }
+  80% {
+    background-color: #563dde;
+    left: 0px;
+    bottom: 550px; }
+  100% {
+    background-color: #6cd0e6;
+    left: 0px;
+    bottom: 0px; } }
+@keyframes swap-second {
+  0% {
+    background-color: #6cd0e6;
+    bottom: 0px; }
+  50% {
+    background-color: #563dde;
+    right: 0px;
+    bottom: 600px; }
+  60% {
+    background-color: #6cd0e6;
+    right: 200px;
+    bottom: 600px; }
+  80% {
+    background-color: #563dde;
+    right: 0px;
+    bottom: 600px; }
+  100% {
+    background-color: #6cd0e6;
+    right: 0px;
+    bottom: -50px; } }
 
 /*# sourceMappingURL=style.css.map */
