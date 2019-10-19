@@ -30,20 +30,21 @@ body,html{
             border-radius: 2px;;
             border-top: none;
             box-shadow: -1px 0px 8px 7px #386ba08f;
-            height: 500px;
-            width: 200px;
+            height: 600px;
+            width: 300px;
             padding: 0px ;
             margin: 50px;
-            
+            display: flex;
+            flex-direction: column-reverse;
             .items {
-                position: absolute;
-                bottom:40px;
+               position: relative;
+               //bottom:40px;
                 background-color: #43b5b5;
                 color: white;
                 font-size: 20px;
                 align-content: center;
-                height: 50px;
-                width: 180px;
+                height: 48px;
+                width: 280px;
                 border: 1px solid white;
                 line-height: 50px;
                 text-align: center;
@@ -51,10 +52,13 @@ body,html{
             }
             .move-items{
                 @extend .items;
-                animation: slide-up 2s ease;
+                animation: slide 1s linear;
+                // animation-direction: reverse; 
+            }
+           
             }
         }
-    }
+    
     .stack-functions{
         display: flex;
         justify-content: center;
@@ -75,31 +79,11 @@ body,html{
         }
     }
 }
-@keyframes slide-up {
-    0% {
-        opacity: 0;
-        transform: translateY(-500px);
-    }
-    20% {
-        opacity: 1;
-        transform: translateY(-400px);
-    }
-    40% {
-        //opacity: 0.5;
-        transform: translateY(-300px);
-    }
-    60% {
-        //opacity: 0.5;
-        transform: translateY(-200px);
-    }
-    80% {
-        //opacity: 0.5;
-        transform: translateY(-100px);
-    }
-    100% {
-       // opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes slide {
+    0%   {background-color:red; left:-200px; bottom:600px;}
+    30%  {background-color:blue; left:0px; bottom:600px;}
+    // 50%  {background-color:blue; left:0px; bottom:300px;}
+    100% {background-color:red; left:0px; bottom:0px;}    
 }
 @keyframes slide-down {
     0% {

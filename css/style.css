@@ -29,24 +29,25 @@ body, html {
       border-radius: 2px;
       border-top: none;
       box-shadow: -1px 0px 8px 7px #386ba08f;
-      height: 500px;
-      width: 200px;
+      height: 600px;
+      width: 300px;
       padding: 0px;
-      margin: 50px; }
+      margin: 50px;
+      display: flex;
+      flex-direction: column-reverse; }
       .container .stack-body .body .items, .container .stack-body .body .move-items {
-        position: absolute;
-        bottom: 40px;
+        position: relative;
         background-color: #43b5b5;
         color: white;
         font-size: 20px;
         align-content: center;
-        height: 50px;
-        width: 180px;
+        height: 48px;
+        width: 280px;
         border: 1px solid white;
         line-height: 50px;
         text-align: center; }
       .container .stack-body .body .move-items {
-        animation: slide-up 2s ease; }
+        animation: slide 1s linear; }
   .container .stack-functions {
     display: flex;
     justify-content: center;
@@ -64,21 +65,19 @@ body, html {
         color: white;
         border-radius: 20px; }
 
-@keyframes slide-up {
+@keyframes slide {
   0% {
-    opacity: 0;
-    transform: translateY(-500px); }
-  20% {
-    opacity: 1;
-    transform: translateY(-400px); }
-  40% {
-    transform: translateY(-300px); }
-  60% {
-    transform: translateY(-200px); }
-  80% {
-    transform: translateY(-100px); }
+    background-color: red;
+    left: -200px;
+    bottom: 600px; }
+  30% {
+    background-color: blue;
+    left: 0px;
+    bottom: 600px; }
   100% {
-    transform: translateY(0); } }
+    background-color: red;
+    left: 0px;
+    bottom: 0px; } }
 @keyframes slide-down {
   0% {
     opacity: 0;
