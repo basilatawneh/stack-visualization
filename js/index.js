@@ -101,7 +101,7 @@ function getPeak(){
     }
     let stack = document.getElementsByClassName("items");
     let topStack = stack[stack.length-1];
-    popupDisplay(topStack.innerHTML);
+    popupDisplay(topStack.innerHTML,1000);
     setTimeout(() => {  
         ButtonsDisable(false);
     }, 1000);
@@ -163,7 +163,9 @@ function newStack(){
     popupDisplay("Wait",1000);
     let stack = document.getElementsByClassName("items");
     for (let item of stack)
-        item.style.animation = "slide-down 1s linear alternate-reverse"
+        item.style.animation = "slide-down 1s linear alternate-reverse";
+    popupAnimationChange("swap-first",index,"left");
+    popupAnimationChange("swap-second",index-1,"right");
     setTimeout(() => {
         let bb= document.getElementsByClassName("body")[0];
         bb.innerHTML = "";
